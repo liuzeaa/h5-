@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="email=no" name="format-detection" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <title>scene</title>
+	<link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/iSlider.min.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div id="main"></div>
+<div class="data-plat">
+    <div class="content">
+        <div class="bg bg1" >
+			<h1><a href="javascript:;" class="disb fr yuyue"></a></h1>
+			<div class="video">
+				<a href="javascript:;" class="disb"></a>
+			</div>
+			<div class="download">
+				<div class="download_left fl">
+					<div class="download_bg fr">
+						<i class="disb"><img src="images/erweima.png" alt="" /></i>
+						<p>微信公众号</p>
+					</div>
+				</div>
+				<div class="download_right fr">
+					<a href="javascript:;" class="disb downloaded"></a>
+				</div>
+			</div>
+        </div>
+		<i class="next fa fa-chevron-down"></i>
+    </div>
+    <div class="content">
+		<div class="bg bg2"></div>
+        <i class="next fa fa-chevron-down"></i>
+    </div>
+	<div class="content">
+        <div class="bg bg3">
+			<div class="btn">
+				<ul>
+					<li class="fulai active"><a href="javascript:;" audiosrc=""></a></li>
+					<li class="feilong"><a href="javascript:;" audiosrc=""></a></li>
+					<li class="kongxiang"><a href="javascript:;" audiosrc=""></a></li>
+					<li class="huangjia"><a href="javascript:;" audiosrc=""></a></li>
+					<li class="yanzhan"><a href="javascript:;" audiosrc=""></a></li>
+				</ul>
+			</div>
+			<div class="desc">
+				<div class="desc_left">
+					<p>原型為美國二戰中最著名的驅逐艦弗萊徹，名字來源於一戰時的海軍上將法蘭克•弗萊德•弗萊徹(Frank Friday Fletcher），作為二戰著名的餃子王級驅逐艦的首艦（儘管不是第一個下水的）陽炎號說她家姐妹多，一個電話能叫來18個妹妹，弗萊徹笑哭了（弗萊徹的妹妹有174個）。</p>				
+				</div>
+				<div class="desc_right">
+					<p class="name">姓名：弗莱彻</p>
+					<p class="hangji">航级：驱逐</p>
+					<p class="shengyou">声优：村川梨衣</p>
+					<button class="audio" ontouchend="var  audio = document.getElementById('audio');if(audio.paused){audio.play()}else{
+						audio.pause()}"></button>
+					<audio src="audio/fulai/Fletcher_01.wav" id="audio" preload hidden></audio>
+				</div>
+			</div>
+        </div>
+        <i class="next fa fa-chevron-down"></i>
+    </div>
+	<div class="content">
+        <div class="bg bg4">
+			<div class="click">
+				<a href="javascript:;" class="disb clicked"></a>
+			</div>
+        </div>
+        <i class="next fa fa-chevron-down"></i>
+    </div>
+    <div class="content">
+        <div class="bg bg5">
+			<div class="share_weixin">
+				<ul class="share clearfix">
+					<li class="weibo"><a href="http://weibo.com/u/5804887851" class="disb"></a></li>
+					<li class="baidu"><a href="http://tieba.baidu.com/f?kw=钢铁少女&fr=fenter&prequery=钢铁少女&ie=utf-8" class="disb"></a></li>
+				</ul>
+				<div class="weixin_bg">
+					<i class="disb shareweixin"><img src="images/erweima.png" alt="" /></i>
+					<p>关注微信公众号</p>
+					<div>请直接扫描或者长按二维码保存至本地，在使用二维码扫描</div>
+				</div>
+			</div>
+        </div>
+		<i class="next fa fa-chevron-down back">
+			<em class="disb"></em>
+			<p>回到顶部</p>
+		</i>
+    </div>
+</div>
+<div class="dialog_bg none"></div>
+<div class="videoplayer none"></div>
+<div class="dialog none"><span class="close disb"></span></div>
+<div class="page none">
+    <div class="closet"></div>
+    <a class="but" href="http://survey.kong.net/jq/7082743,i,t.aspx?width=500&amp;source=iframe&amp;tm=1&amp;sm=t"></a>
+    <i></i><!--解决插件问题，误删-->
+</div>
+<script src="js/iSlider.min.js"></script>
+<script src="js/iSlider.animate.min.js"></script>
+<script>
+
+    function fstyle() {
+        document.body.style.backgroundColor = window.getComputedStyle(this.data[this.slideIndex].content.querySelector(':first-child')).backgroundColor;
+    }
+
+    var data = [];
+
+    Array.prototype.slice.call(document.querySelectorAll('.content')).forEach(function (el) {
+        data.push({content: el});
+    });
+
+    
+
+    var ISL = new iSlider(document.getElementById('main'), data, {
+        isLooping: false,
+        isVertical: 1,
+        animateTime: 1000,
+        //plugins: [],
+        oninitialized: fstyle
+    });
+
+    ISL.bind('click', '.next', function () {
+        ISL.slideNext();
+    });
+
+    ISL.on('slideStart', function () {
+        fstyle.call(this);
+    });
+
+    ISL.on('slideChange', function () {
+        fstyle.call(this);
+    });
+    $('.back').on("touchend",function(){
+		ISL.slideTo(0);
+	})
+</script>
+<script type="text/javascript" src="js/json.js"></script>
+<script type="text/javascript" src="js/my.js"></script>
+</body>
+</html>
